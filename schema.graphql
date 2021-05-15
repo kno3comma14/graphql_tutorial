@@ -1,0 +1,50 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+enum CurrencyUnit {
+  USD,
+  PEN,
+  EUR
+}
+
+type Coin {
+  id: ID!
+  description: String!
+  name: String!
+  price(currency: CurrencyUnit = USD): Float!
+}
+
+type Wallet {
+  id: ID!
+  coins: [Coin]!
+}
+
+type WalletResult {
+  success: Boolean!
+  errors: [String]
+  wallet: Wallet
+}
+
+type WalletsResult {
+  success: Boolean!
+  errors: [String]
+  wallets: [Wallet]
+}
+
+type Query {
+  wallets: WalletsResult!
+  wallet(walletId: ID!): Wallet!
+}
+
+type DeleteWalletResult {
+  success: Boolean!
+  errors: [String]
+}
+
+type Mutation {
+  createWallet(coins: [Coin]): WalletResult!
+  deleteWallet(walletId: ID!): DeleteWalletResult!
+  addNewCoinToWallet(walletId: ID!, coinId: ID!): WalletResult!
+}
