@@ -4,8 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
+ariadne = "*"
+flask-sqlalchemy = "*"
+mysql-connector-python = "*"
+
 
 [dev-packages]
+pytest = "*"
 
 [requires]
 python_version = "3.8"
