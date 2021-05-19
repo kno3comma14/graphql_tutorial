@@ -3,16 +3,24 @@ from ariadne import load_schema_from_path, make_executable_schema, \
     graphql_sync, snake_case_fallback_resolvers, ObjectType
 from ariadne.constants import PLAYGROUND_HTML
 from flask import request, jsonify
-from api.queries import fetch_wallets
+from api.queries import fetch_wallets, fetch_one_wallet
+from api.mutations import create_wallet, delete_wallet, add_coin_to_wallet
 
 query = ObjectType("Query")
+mutation = ObjectType("Mutation")
 
 query.set_field("wallets", fetch_wallets)
+query.set_field("wallet", fetch_one_wallet)
+
+mutation.set_field("createWallet", create_wallet)
+mutation.set_field("deleteWallet", delete_wallet)
+mutation.set_field("addNewCoinToWallet", add_coin_to_wallet)
+
 
 type_defs = load_schema_from_path("schema.graphql")
 
 schema = make_executable_schema(
-    type_defs, query, snake_case_fallback_resolvers
+    type_defs, query, mutation, snake_case_fallback_resolvers
 )
 
 

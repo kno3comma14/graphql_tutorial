@@ -1,6 +1,6 @@
 schema {
   query: Query
-  # mutation: Mutation
+  mutation: Mutation
 }
 
 enum CurrencyUnit {
@@ -37,7 +37,7 @@ type WalletsResult {
 
 type Query {
   wallets: WalletsResult!
-  wallet(walletId: ID!): Wallet!
+  wallet(walletId: ID!): WalletResult!
 }
 
 type DeleteWalletResult {
@@ -45,8 +45,8 @@ type DeleteWalletResult {
   errors: [String]
 }
 
-# type Mutation {
-#   createWallet(coins: [Coin]): WalletResult!
-#   deleteWallet(walletId: ID!): DeleteWalletResult!
-#   addNewCoinToWallet(walletId: ID!, coinId: ID!): WalletResult!
-# }
+type Mutation {
+  createWallet(name: String!, currency: String!, coins: [Int]): WalletResult!
+  deleteWallet(walletId: ID!): DeleteWalletResult!
+  addNewCoinToWallet(walletId: ID!, coinId: ID!): WalletResult!
+}
