@@ -1,5 +1,5 @@
 # graphql_tutorial
-This project is made as an example of the graph tutorial created at [https://allstarscoders.com](All Stars Coders).
+This project is made as an example of the graph tutorial created at (All Stars Coders)[https://allstarscoders.com].
 
 ### Requirements
 To run this project you will need to have the following requirements:
